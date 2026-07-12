@@ -1,0 +1,88 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Norgate Data
+providerId: norgate-data
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Market Data
+- Financial Data
+- Historical Data
+- Futures
+- Stocks
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Norgate Data spend. Cost is a flat, predictable data
+  subscription rather than usage-metered API charges - there are no per-request,
+  per-token or per-GB fees because access is a local library over the on-machine
+  NDU database. Spend is driven by which markets you subscribe to (US, Australian,
+  Canadian stocks, Futures, Forex), the history-depth tier chosen per stock market
+  (Silver 10y, Gold 20y, Platinum to early 1990s, Diamond to 1950 for US), the
+  subscription term (6 or 12 months, with a ~10 percent discount on annual), and
+  any add-ons (US OTC securities, ASX derivatives). Secondary cost is the
+  subscriber-owned Windows machine or VM required to run NDU. Because billing is a
+  fixed recurring subscription, cost is fully predictable and easy to allocate.
+notes: >-
+  No consumption meters apply - this is a flat subscription. Optimize by
+  subscribing only to the markets and history depth actually needed for your
+  strategies and by choosing annual terms for the discount. Verify current per-
+  market prices and currencies on the Norgate price calculator.
+sources:
+- https://norgatedata.com/prices.php
+- https://norgatedata.com/stockmarketpackages.php
+- https://norgatedata.com/futurespackage.php
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Norgate Data
+serviceCategory: Market Data and Financial Data
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Semiannual or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+focusColumns:
+  ServiceName: Norgate Data Subscription
+  ServiceCategory: Market Data and Financial Data
+  ProviderName: Norgate Data
+  PublisherName: Norgate Data
+  InvoiceIssuerName: Norgate Data
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: market_subscription
+  description: Flat subscription per market and history-depth tier (Silver/Gold/Platinum/Diamond, Futures, Forex).
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - market
+  - tier
+  - term
+- name: local_compute
+  description: Cost of the subscriber-owned Windows machine or VM required to run the Norgate Data Updater (no Norgate invoice).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - machine
+principles:
+- name: Visibility
+  description: Track which market packages and history tiers are subscribed; there is no per-query spend to monitor since access is local.
+- name: Allocation
+  description: Map each market/tier subscription to the strategy or team that requires it.
+- name: Optimization
+  description: Subscribe only to needed markets and history depth; prefer 12-month terms for the discount; consolidate onto a shared NDU VM where licensing permits.
+- name: Accountability
+  description: Assign an owner to renew subscriptions on schedule and review whether each market/tier is still used before renewal.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

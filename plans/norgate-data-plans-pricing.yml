@@ -1,0 +1,169 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Norgate Data
+providerId: norgate-data
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Market Data
+- Financial Data
+- Historical Data
+- Futures
+- Stocks
+- Plans
+description: >-
+  Norgate Data is sold as a data subscription, not as metered API calls. A
+  subscription entitles you to install the Norgate Data Updater (NDU) desktop
+  application and access the local data - the norgatedata Python package and any
+  platform plugins are free and included, because all access happens against your
+  local database. Stock-market data is packaged per market (US, Australia, Canada)
+  in tiers that differ by history depth - Silver (10 years), Gold (20 years),
+  Platinum (back to the early 1990s) and, for US stocks, Diamond (back to 1950).
+  Futures and Forex are separate packages. Terms are 6-month or 12-month, with
+  roughly a 10 percent discount on 12-month terms. Prices below are grounded to
+  Norgate's published pricing in USD and should be re-verified with Norgate's
+  price calculator during reconciliation (currency and exact totals vary by
+  market and add-ons such as US OTC securities or ASX derivatives).
+notes: >-
+  There is no per-request or per-endpoint API fee - the norgatedata Python
+  package and platform plugins are free with an active subscription. Verify
+  current tiers, currencies and totals on the Norgate pricing pages during
+  reconciliation.
+sources:
+- https://norgatedata.com/prices.php
+- https://norgatedata.com/stockmarketpackages.php
+- https://norgatedata.com/futurespackage.php
+- https://norgatedata.com/data-content-tables.php
+plans:
+- id: norgate-stocks-silver
+  name: Stocks - Silver
+  type: paid
+  description: >-
+    Per-market stock package (US, Australia or Canada) with the last 10 years of
+    daily price history for currently-listed major-exchange equities, indices and
+    current index constituents.
+  entries:
+  - label: Annual Subscription (per market)
+    name: silver_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: USD 270 / 12 months (approx; 6-month term available at higher effective rate)
+    userMultiplied: false
+  elements:
+  - name: 10 Years Daily History
+  - name: Currently-Listed Major Exchange Equities
+  - name: Indices and Current Index Constituents
+- id: norgate-stocks-gold
+  name: Stocks - Gold
+  type: paid
+  description: >-
+    Per-market stock package with the last 20 years of daily price history, adding
+    depth over Silver for longer backtests.
+  entries:
+  - label: Annual Subscription (per market)
+    name: gold_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: USD 360 / 12 months (approx)
+    userMultiplied: false
+  elements:
+  - name: 20 Years Daily History
+  - name: Currently-Listed Major Exchange Equities
+  - name: Indices and Current Index Constituents
+- id: norgate-stocks-platinum
+  name: Stocks - Platinum
+  type: paid
+  description: >-
+    Per-market stock package with full daily price history back to the early 1990s
+    (1990 for US and Canada, 1992 for Australia), including delisted securities and
+    historical index constituents for survivorship-bias-free research.
+  entries:
+  - label: Annual Subscription (per market)
+    name: platinum_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: USD 630 / 12 months (approx)
+    userMultiplied: false
+  elements:
+  - name: History Back to Early 1990s
+  - name: Delisted Securities
+  - name: Historical Index Constituents (Survivorship Bias Free)
+- id: norgate-stocks-diamond
+  name: Stocks - Diamond (US)
+  type: paid
+  description: >-
+    US-only deepest tier with daily price history back to 1950 for the longest
+    historical backtests. Pricing above Platinum; verify on the price calculator.
+  entries:
+  - label: Annual Subscription (US)
+    name: diamond_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: see Norgate price calculator (US only)
+    userMultiplied: false
+  elements:
+  - name: History Back to 1950
+  - name: Delisted Securities
+  - name: Historical Index Constituents (Survivorship Bias Free)
+- id: norgate-futures
+  name: Futures Package
+  type: paid
+  description: >-
+    Around 100 futures markets across 11 worldwide exchange groups, with individual
+    contract history back to roughly 1980 (or first day of trading) and spot-month
+    continuous contracts in unadjusted and back-adjusted formats.
+  entries:
+  - label: Annual Subscription
+    name: futures_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: USD 270 / 12 months (USD 148.50 / 6 months)
+    userMultiplied: false
+  elements:
+  - name: ~100 Futures Markets, 11 Exchange Groups
+  - name: History Back to ~1980
+  - name: Unadjusted and Back-Adjusted Continuous Contracts
+- id: norgate-forex
+  name: Forex Package
+  type: paid
+  description: >-
+    Foreign exchange daily price history back to 1991. Verify exact price on the
+    Norgate price calculator.
+  entries:
+  - label: Annual Subscription
+    name: forex_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: see Norgate price calculator
+    userMultiplied: false
+  elements:
+  - name: Daily FX History Back to 1991
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,114 @@
+aid: norgate-data
+name: Norgate Data
+review:
+  question: Does Norgate Data expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Norgate Data has no public network API of
+    any kind - no REST, no SSE, and no WebSocket - so there is no server-push
+    transport to model. Access is a local Python library (norgatedata) reading
+    from an on-machine Norgate Data Updater (NDU) database. The only network
+    activity is NDU pulling the daily end-of-day update from Norgate's servers,
+    which is an internal update mechanism, not a documented API.
+findings:
+  summary: |
+    Norgate Data does not publish a documented public WebSocket API - in fact it
+    publishes no hosted public API at all. Norgate is an end-of-day (EOD)
+    historical market data vendor covering US, Australian and Canadian stocks,
+    ~100 worldwide futures markets, and forex. Delivery is via the Norgate Data
+    Updater (NDU), a Windows-only desktop application that downloads and
+    maintains a complete local database and runs a local data service.
+    Programmatic access is through the norgatedata Python package (PyPI,
+    v1.0.77 at review time), which reads from that local NDU database and
+    returns Pandas DataFrames / NumPy arrays. NDU must be running on the local
+    (or a VM/WSL2) Windows machine for the package to work. There is no
+    wss:// or ws:// endpoint, and no public HTTP/REST base URL, documented
+    anywhere. This is a client-library-over-local-service model, not an API.
+  accessModel: |
+    Library + local service. Subscribers install NDU (Windows 10/11 or Windows
+    Server; Mac/Linux users run it in a Windows VM or WSL2 with mirrored
+    networking). The norgatedata Python package depends on pandas, numpy,
+    requests and logbook and communicates with the locally running NDU service,
+    reading from a local .norgatedata user folder. Norgate also ships plugins
+    for platforms such as Amibroker and integrates with Python backtesting
+    frameworks (Zipline via zipline-norgatedata, Backtrader).
+  transports:
+    - protocol: Python Library
+      scheme: local
+      documented: true
+      note: norgatedata package on PyPI; the public, documented programmatic surface. Reads the local NDU database, returns Pandas/NumPy.
+    - protocol: Local Data Service
+      scheme: local
+      documented: true
+      note: Norgate Data Updater (NDU) desktop app maintains the local database and must be running. Not exposed as a public network API.
+    - protocol: REST
+      scheme: https
+      documented: false
+      note: No hosted public HTTP/REST API is offered. There is no public base URL.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere. Data is EOD historical, not realtime/streaming.
+  endpointsModeled:
+    - norgatedata.price_timeseries
+    - norgatedata.index_constituent_timeseries
+    - norgatedata.major_exchange_listed_timeseries
+    - norgatedata.capital_event_timeseries
+    - norgatedata.dividend_yield_timeseries
+    - norgatedata.unadjusted_close_timeseries
+    - norgatedata.padding_status_timeseries
+    - norgatedata.blank_check_company_timeseries
+    - norgatedata.security_name
+    - norgatedata.classification
+    - norgatedata.classification_at_level
+    - norgatedata.futures_market_symbols
+    - norgatedata.futures_market_session_contracts
+    - norgatedata.point_value
+    - norgatedata.margin
+    - norgatedata.first_notice_date
+    - norgatedata.fundamental
+    - norgatedata.financial_summary
+    - norgatedata.watchlist
+    - norgatedata.watchlist_symbols
+    - norgatedata.databases
+    - norgatedata.database_symbols
+    - norgatedata.last_database_update_time
+    - norgatedata.last_price_update_time
+  dataScope: |
+    End-of-day daily data only (with weekly/monthly/quarterly/yearly rollups).
+    Survivorship-bias-free: includes delisted securities and historical index
+    constituents. Futures include unadjusted and back-adjusted continuous
+    contracts. No intraday or realtime tick data, consistent with the absence of
+    any streaming/WebSocket transport.
+sources:
+  - url: https://pypi.org/project/norgatedata/
+    type: Documentation
+    note: norgatedata Python package README - requirements (NDU must be running), functions, and data formats. No network API described.
+  - url: https://norgatedata.com/
+    type: Website
+    note: Vendor overview - EOD historical data for stocks, futures and forex delivered via NDU.
+  - url: https://norgatedata.com/data-content-tables.php
+    type: Documentation
+    note: Data content and columns by instrument type.
+  - url: https://norgatedata.com/futurespackage.php
+    type: Documentation
+    note: Futures package - ~100 markets, 11 exchange groups, continuous contracts.
+  - url: https://norgatedata.com/data-package-faq.php
+    type: Documentation
+    note: Data package FAQ and licensing.
+  - url: https://pypi.org/project/zipline-norgatedata/
+    type: SourceCode
+    note: Zipline integration bundle built on the norgatedata package.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket - or any hosted public API - surface exists. Norgate Data is a
+    Python-library-over-local-NDU-service model delivering EOD historical data.
+    No AsyncAPI document was created because there is no server-push transport
+    to model. The apis.yml entry models the norgatedata library's logical
+    operations as capability areas and is explicit that this is not a public
+    HTTP/REST API.

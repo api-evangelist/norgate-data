@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Norgate Data
+providerId: norgate-data
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Market Data
+- Financial Data
+- Historical Data
+- Rate Limiting
+- Quotas
+description: >-
+  Norgate Data does not expose a hosted public API and therefore publishes no
+  per-request HTTP rate limits or quotas. Programmatic access via the norgatedata
+  Python package runs against a local Norgate Data Updater (NDU) database on the
+  subscriber's own Windows machine, so query throughput is bounded only by local
+  CPU, disk and memory - not by a network API gate. The only network activity is
+  NDU itself downloading the daily EOD update from Norgate's servers; that
+  synchronization is governed by Norgate's terms of service and fair-use, not by a
+  documented per-minute request cap. Data is redistributed under a single-user
+  license; bulk redistribution or multi-user server access is contractually
+  restricted rather than rate-limited.
+notes: >-
+  No numeric API rate limits exist because there is no public HTTP/REST API. NDU
+  is a single-user desktop application (server editions are limited to one
+  installed account). Verify licensing and fair-use terms with Norgate rather than
+  looking for API quotas.
+sources:
+- https://pypi.org/project/norgatedata/
+- https://norgatedata.com/
+- https://norgatedata.com/data-package-faq.php
+responseCodes: {}
+limits:
+- name: Public API Requests
+  scope: account
+  metric: requests
+  limit: not applicable
+  notes: No hosted public HTTP/REST API exists; access is a local library over the NDU database.
+- name: Local Query Throughput
+  scope: machine
+  metric: queries
+  limit: hardware-bound
+  notes: norgatedata queries run against the local NDU database and are limited only by local machine resources.
+- name: Daily Data Synchronization
+  scope: subscription
+  metric: updates
+  limit: daily EOD update
+  notes: NDU downloads the end-of-day update once available each trading day, governed by Norgate fair-use, not an API quota.
+- name: Concurrent Users
+  scope: license
+  metric: users
+  limit: single user
+  notes: Single-user license; server installs are restricted to a single installed account and not designed for server-wide multi-user access.
+policies:
+- name: Local Service Model
+  description: All queries resolve against a local NDU database; there is no network round-trip per query and thus no server-side throttling.
+- name: Multithreading Support
+  description: The norgatedata package is documented as multithreading / multiprocessing compatible for parallel local queries.
+- name: Fair Use and Licensing
+  description: Data access and redistribution are governed by Norgate's single-user license and terms of service rather than by API rate limits.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
