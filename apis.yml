@@ -17,213 +17,195 @@ description: >-
   entry honestly models the norgatedata library's logical operations as
   capability areas; it is a client library over a local service, not a public
   HTTP/REST API.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Paid
+  confidence: medium
+  source:
+    - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/norgate-data.png
 tags:
-- Market Data
-- Financial Data
-- Historical Data
-- Futures
-- Stocks
-- End of Day
-- EOD
-- Backtesting
-- Survivorship Bias Free
-- Python
+  - Market Data
+  - Financial Data
+  - Historical Data
+  - Futures
+  - Stocks
+  - End of Day
+  - EOD
+  - Backtesting
+  - Survivorship Bias Free
+  - Python
 created: '2026-07-11'
-modified: '2026-07-11'
+modified: '2026-07-25'
 specificationVersion: '0.19'
 apis:
-- aid: norgate-data:norgate-data-price-volume-data
-  name: Norgate Data Price and Volume Data
-  tags:
-  - Market Data
-  - Historical Data
-  - Price Data
-  - OHLCV
-  - Stocks
-  - Futures
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pypi.org/project/norgatedata/
-  accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
-  properties:
-  - url: https://pypi.org/project/norgatedata/
-    type: Documentation
-  - url: https://pypi.org/project/norgatedata/
-    type: SourceCode
-  - url: https://norgatedata.com/data-content-tables.php
-    type: Documentation
-  endpointsModeled:
-  - norgatedata.price_timeseries
-  description: >-
-    Retrieve daily EOD open/high/low/close, volume, turnover, unadjusted close,
-    dividends and open interest as a Pandas DataFrame or NumPy array. Supports
-    date ranges, record limits, weekly/monthly/quarterly/yearly intervals,
-    capital-and-dividend price adjustment (total return, capital, capital+special,
-    none) and date padding. Delivered by the norgatedata Python package reading
-    from the local NDU database - there is no public HTTP endpoint.
-- aid: norgate-data:norgate-data-corporate-actions-timeseries
-  name: Norgate Data Corporate Actions and Time Series
-  tags:
-  - Corporate Actions
-  - Historical Data
-  - Index Constituents
-  - Dividends
-  - Survivorship Bias Free
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pypi.org/project/norgatedata/
-  accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
-  properties:
-  - url: https://pypi.org/project/norgatedata/
-    type: Documentation
-  - url: https://norgatedata.com/data-content-tables.php
-    type: Documentation
-  endpointsModeled:
-  - norgatedata.index_constituent_timeseries
-  - norgatedata.major_exchange_listed_timeseries
-  - norgatedata.capital_event_timeseries
-  - norgatedata.dividend_yield_timeseries
-  - norgatedata.unadjusted_close_timeseries
-  - norgatedata.blank_check_company_timeseries
-  - norgatedata.padding_status_timeseries
-  description: >-
-    Point-in-time boolean and value time series used to build survivorship-bias-free
-    databases - historical index membership, major-exchange-listed status, capital
-    events, dividend yield, unadjusted close, blank-check-company flags and padding
-    status. Returned per symbol from the local NDU database via the norgatedata
-    Python package.
-- aid: norgate-data:norgate-data-security-metadata-classifications
-  name: Norgate Data Security Metadata and Classifications
-  tags:
-  - Metadata
-  - Reference Data
-  - Classifications
-  - Stocks
-  - Symbols
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pypi.org/project/norgatedata/
-  accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
-  properties:
-  - url: https://pypi.org/project/norgatedata/
-    type: Documentation
-  endpointsModeled:
-  - norgatedata.security_name
-  - norgatedata.symbol
-  - norgatedata.assetid
-  - norgatedata.domicile
-  - norgatedata.currency
-  - norgatedata.exchange_name
-  - norgatedata.exchange_name_full
-  - norgatedata.classification
-  - norgatedata.classification_at_level
-  - norgatedata.corresponding_industry_index
-  - norgatedata.base_type
-  - norgatedata.status
-  - norgatedata.first_quoted_date
-  - norgatedata.last_quoted_date
-  - norgatedata.second_last_quoted_date
-  - norgatedata.tick_size
-  - norgatedata.lowest_ever_tick_size
-  - norgatedata.session_type
-  description: >-
-    Single-value reference and metadata lookups for a security - name, symbol,
-    asset id, domicile, currency, exchange, GICS-style classification at any level,
-    corresponding industry index, base type, listing status, quoted-date range and
-    tick size. Served from the local NDU database via the norgatedata Python package.
-- aid: norgate-data:norgate-data-futures-metadata
-  name: Norgate Data Futures Metadata
-  tags:
-  - Futures
-  - Market Data
-  - Continuous Contracts
-  - Metadata
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://norgatedata.com/futurespackage.php
-  accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
-  properties:
-  - url: https://norgatedata.com/futurespackage.php
-    type: Documentation
-  - url: https://pypi.org/project/norgatedata/
-    type: Documentation
-  endpointsModeled:
-  - norgatedata.futures_market_name
-  - norgatedata.futures_market_symbol
-  - norgatedata.futures_market_symbols
-  - norgatedata.futures_market_session_name
-  - norgatedata.futures_market_session_symbol
-  - norgatedata.futures_market_session_symbols
-  - norgatedata.futures_market_session_contracts
-  - norgatedata.point_value
-  - norgatedata.margin
-  - norgatedata.first_notice_date
-  description: >-
-    Futures-specific reference data covering around 100 markets across 11 worldwide
-    exchange groups - market and session names/symbols, session contracts, point
-    value, margin and first notice date. Norgate provides both unadjusted and
-    back-adjusted spot-month continuous contracts for backtesting. Served from the
-    local NDU database via the norgatedata Python package.
-- aid: norgate-data:norgate-data-fundamentals
-  name: Norgate Data Fundamentals
-  tags:
-  - Fundamental Data
-  - Financial Data
-  - Stocks
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pypi.org/project/norgatedata/
-  accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
-  properties:
-  - url: https://pypi.org/project/norgatedata/
-    type: Documentation
-  endpointsModeled:
-  - norgatedata.fundamental
-  - norgatedata.financial_summary
-  - norgatedata.business_summary
-  - norgatedata.sharesoutstanding
-  - norgatedata.sharesfloat
-  description: >-
-    Company fundamental lookups - named fundamental fields, financial summary,
-    business summary, shares outstanding and shares float. Availability depends on
-    subscription package. Served from the local NDU database via the norgatedata
-    Python package.
-- aid: norgate-data:norgate-data-watchlists-databases
-  name: Norgate Data Watchlists and Databases
-  tags:
-  - Watchlists
-  - Security Lists
-  - Symbols
-  - Metadata
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pypi.org/project/norgatedata/
-  accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
-  properties:
-  - url: https://pypi.org/project/norgatedata/
-    type: Documentation
-  endpointsModeled:
-  - norgatedata.watchlist
-  - norgatedata.watchlists
-  - norgatedata.watchlist_symbols
-  - norgatedata.database
-  - norgatedata.databases
-  - norgatedata.database_symbols
-  - norgatedata.last_database_update_time
-  - norgatedata.last_price_update_time
-  description: >-
-    Enumerate and resolve the security lists in the local database - user and
-    Norgate-maintained watchlists, built-in databases, and their member symbols -
-    plus database and price update timestamps used to check freshness. Served from
-    the local NDU database via the norgatedata Python package.
+  - aid: norgate-data:norgate-data-price-volume-data
+    name: Norgate Data Price and Volume Data
+    tags:
+      - Market Data
+      - Historical Data
+      - Price Data
+      - OHLCV
+      - Stocks
+      - Futures
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://pypi.org/project/norgatedata/
+    accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
+    properties:
+      - url: https://pypi.org/project/norgatedata/
+        type: Documentation
+      - url: https://pypi.org/project/norgatedata/
+        type: SourceCode
+      - url: https://norgatedata.com/data-content-tables.php
+        type: Documentation
+    endpointsModeled:
+      - norgatedata.price_timeseries
+    description: >-
+      Retrieve daily EOD open/high/low/close, volume, turnover, unadjusted close,
+      dividends and open interest as a Pandas DataFrame or NumPy array. Supports
+      date ranges, record limits, weekly/monthly/quarterly/yearly intervals,
+      capital-and-dividend price adjustment (total return, capital, capital+special,
+      none) and date padding. Delivered by the norgatedata Python package reading
+      from the local NDU database - there is no public HTTP endpoint.
+  - aid: norgate-data:norgate-data-security-metadata-classifications
+    name: Norgate Data Security Metadata and Classifications
+    tags:
+      - Metadata
+      - Reference Data
+      - Classifications
+      - Stocks
+      - Symbols
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://pypi.org/project/norgatedata/
+    accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
+    properties:
+      - url: https://pypi.org/project/norgatedata/
+        type: Documentation
+    endpointsModeled:
+      - norgatedata.security_name
+      - norgatedata.symbol
+      - norgatedata.assetid
+      - norgatedata.domicile
+      - norgatedata.currency
+      - norgatedata.exchange_name
+      - norgatedata.exchange_name_full
+      - norgatedata.classification
+      - norgatedata.classification_at_level
+      - norgatedata.corresponding_industry_index
+      - norgatedata.base_type
+      - norgatedata.status
+      - norgatedata.first_quoted_date
+      - norgatedata.last_quoted_date
+      - norgatedata.second_last_quoted_date
+      - norgatedata.tick_size
+      - norgatedata.lowest_ever_tick_size
+      - norgatedata.session_type
+    description: >-
+      Single-value reference and metadata lookups for a security - name, symbol,
+      asset id, domicile, currency, exchange, GICS-style classification at any level,
+      corresponding industry index, base type, listing status, quoted-date range and
+      tick size. Served from the local NDU database via the norgatedata Python package.
+  - aid: norgate-data:norgate-data-futures-metadata
+    name: Norgate Data Futures Metadata
+    tags:
+      - Futures
+      - Market Data
+      - Continuous Contracts
+      - Metadata
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://norgatedata.com/futurespackage.php
+    accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
+    properties:
+      - url: https://norgatedata.com/futurespackage.php
+        type: Documentation
+      - url: https://pypi.org/project/norgatedata/
+        type: Documentation
+    endpointsModeled:
+      - norgatedata.futures_market_name
+      - norgatedata.futures_market_symbol
+      - norgatedata.futures_market_symbols
+      - norgatedata.futures_market_session_name
+      - norgatedata.futures_market_session_symbol
+      - norgatedata.futures_market_session_symbols
+      - norgatedata.futures_market_session_contracts
+      - norgatedata.point_value
+      - norgatedata.margin
+      - norgatedata.first_notice_date
+    description: >-
+      Futures-specific reference data covering around 100 markets across 11 worldwide
+      exchange groups - market and session names/symbols, session contracts, point
+      value, margin and first notice date. Norgate provides both unadjusted and
+      back-adjusted spot-month continuous contracts for backtesting. Served from the
+      local NDU database via the norgatedata Python package.
+  - aid: norgate-data:norgate-data-fundamentals
+    name: Norgate Data Fundamentals
+    tags:
+      - Fundamental Data
+      - Financial Data
+      - Stocks
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://pypi.org/project/norgatedata/
+    accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
+    properties:
+      - url: https://pypi.org/project/norgatedata/
+        type: Documentation
+    endpointsModeled:
+      - norgatedata.fundamental
+      - norgatedata.financial_summary
+      - norgatedata.business_summary
+      - norgatedata.sharesoutstanding
+      - norgatedata.sharesfloat
+    description: >-
+      Company fundamental lookups - named fundamental fields, financial summary,
+      business summary, shares outstanding and shares float. Availability depends on
+      subscription package. Served from the local NDU database via the norgatedata
+      Python package.
+  - aid: norgate-data:norgate-data-watchlists-databases
+    name: Norgate Data Watchlists and Databases
+    tags:
+      - Watchlists
+      - Security Lists
+      - Symbols
+      - Metadata
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://pypi.org/project/norgatedata/
+    accessModel: Python library over local Norgate Data Updater (NDU) service - not a hosted REST API
+    properties:
+      - url: https://pypi.org/project/norgatedata/
+        type: Documentation
+    endpointsModeled:
+      - norgatedata.watchlist
+      - norgatedata.watchlists
+      - norgatedata.watchlist_symbols
+      - norgatedata.database
+      - norgatedata.databases
+      - norgatedata.database_symbols
+      - norgatedata.last_database_update_time
+      - norgatedata.last_price_update_time
+    description: >-
+      Enumerate and resolve the security lists in the local database - user and
+      Norgate-maintained watchlists, built-in databases, and their member symbols -
+      plus database and price update timestamps used to check freshness. Served from
+      the local NDU database via the norgatedata Python package.
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/norgatedata
-- type: Website
-  url: https://norgatedata.com/
-- type: Documentation
-  url: https://pypi.org/project/norgatedata/
-- type: Plans
-  url: plans/norgate-data-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/norgate-data-rate-limits.yml
-- type: FinOps
-  url: finops/norgate-data-finops.yml
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/norgatedata
+  - type: Website
+    url: https://norgatedata.com/
+  - type: Documentation
+    url: https://pypi.org/project/norgatedata/
+  - type: Plans
+    url: plans/norgate-data-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/norgate-data-rate-limits.yml
+  - type: FinOps
+    url: finops/norgate-data-finops.yml
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

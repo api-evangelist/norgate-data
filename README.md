@@ -40,9 +40,6 @@ Daily OHLCV, volume, turnover, unadjusted close, dividends and open interest as 
 
 - **Reference:** [https://pypi.org/project/norgatedata/](https://pypi.org/project/norgatedata/)
 
-### Norgate Data Corporate Actions and Time Series
-
-Point-in-time series for building survivorship-bias-free databases - index constituent history, major-exchange-listed status, capital events, dividend yield, unadjusted close, blank-check-company flags and padding status. Modeled: `index_constituent_timeseries`, `major_exchange_listed_timeseries`, `capital_event_timeseries`, `dividend_yield_timeseries`, `unadjusted_close_timeseries`, `blank_check_company_timeseries`, `padding_status_timeseries`.
 
 ### Norgate Data Security Metadata and Classifications
 
