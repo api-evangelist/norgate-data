@@ -43,7 +43,7 @@ tags:
   - Python
 created: '2026-07-11'
 modified: '2026-07-25'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
   - aid: norgate-data:norgate-data-price-volume-data
     name: Norgate Data Price and Volume Data
