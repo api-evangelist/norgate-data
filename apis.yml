@@ -169,6 +169,11 @@ apis:
   - aid: norgate-data:norgate-data-watchlists-databases
     name: Norgate Data Watchlists and Databases
     tags:
+      - Watchlist
+      - Security Lists
+      - Symbols
+      - Metadata
+    tags_raw:
       - Watchlists
       - Security Lists
       - Symbols
