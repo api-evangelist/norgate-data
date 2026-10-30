@@ -1,4 +1,4 @@
-# Norgate Data (norgate-data)
+# Norgate Data
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,92 +64,100 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Norgate Data provides high-quality, survivorship-bias-free **end-of-day (EOD) historical market data** for US, Australian and Canadian stocks, around 100 worldwide **futures** markets, and **foreign exchange**. It is a long-standing vendor (founded 1995) focused on clean, backtest-ready daily data for systematic traders and quants.
+Norgate Data provides high-quality, survivorship-bias-free end-of-day (EOD) historical market data for US, Australian and Canadian stocks, around 100 worldwide futures markets, and foreign exchange. Data is not delivered as a hosted REST API. Instead, subscribers install the Norgate Data Updater (NDU), a Windows desktop application that downloads and maintains a complete local database and runs a local data service. Programmatic access is through the norgatedata Python package (on PyPI), which talks to that local NDU service and returns price/volume history, corporate actions, index constituent history, security metadata, fundamentals, and watchlists as Pandas DataFrames or NumPy arrays. Norgate also ships plugins for platforms such as Amibroker and is widely used with Python backtesting frameworks (Zipline, Backtrader). This entry honestly models the norgatedata library's logical operations as capability areas; it is a client library over a local service, not a public HTTP/REST API.
 
-> **Access model - read this first.** Norgate Data is **not a hosted REST API**. There is no public HTTP/REST base URL and no WebSocket. Subscribers install the **Norgate Data Updater (NDU)** - a Windows desktop application that downloads and maintains a complete **local database** and runs a **local data service**. Programmatic access is through the **`norgatedata` Python package** (on PyPI), which reads from that local NDU database and returns **Pandas DataFrames / NumPy arrays**. NDU must be running for the package to work. This catalog entry honestly models the library's logical operations as capability areas; it is a **client library over a local service**, not a public API.
+**Areas:** Market Data · Financial Data · Historical Data · Futures · Stocks · End of Day · EOD · Backtesting · Survivorship Bias Free · Python
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/norgate-data/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/norgate-data/refs/heads/main/apis.yml)
+## Norgate Data on APIs.io
 
-## Tags
+Everything profiled for Norgate Data is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/norgate-data/](https://apis.io/providers/norgate-data/)** — or go straight to one of the APIs or properties below.
 
-- Market Data
-- Financial Data
-- Historical Data
-- Futures
-- Stocks
-- End of Day
-- EOD
-- Backtesting
-- Survivorship Bias Free
-- Python
+### APIs (5)
 
-## Timestamps
+- [Norgate Data Price and Volume Data](https://apis.io/apis/norgate-data/norgate-data-price-volume-data/) — Retrieve daily EOD open/high/low/close, volume, turnover, unadjusted close, dividends and open interest as a Pandas DataFrame or NumPy array. Supports date…
+- [Norgate Data Security Metadata and Classifications](https://apis.io/apis/norgate-data/norgate-data-security-metadata-classifications/) — Single-value reference and metadata lookups for a security - name, symbol, asset id, domicile, currency, exchange, GICS-style classification at any level,…
+- [Norgate Data Futures Metadata](https://apis.io/apis/norgate-data/norgate-data-futures-metadata/) — Futures-specific reference data covering around 100 markets across 11 worldwide exchange groups - market and session names/symbols, session contracts, point…
+- [Norgate Data Fundamentals](https://apis.io/apis/norgate-data/norgate-data-fundamentals/) — Company fundamental lookups - named fundamental fields, financial summary, business summary, shares outstanding and shares float. Availability depends on…
+- [Norgate Data Watchlists and Databases](https://apis.io/apis/norgate-data/norgate-data-watchlists-databases/) — Enumerate and resolve the security lists in the local database - user and Norgate-maintained watchlists, built-in databases, and their member symbols - plus…
 
-- **Created:** 2026-07-11
-- **Modified:** 2026-07-11
+### Published properties
 
-## How Access Works
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Norgate Data Updater (NDU):** Windows-only desktop app (Windows 10/11 or Windows Server; Mac/Linux users run it in a Windows VM or WSL2 with mirrored networking). It maintains a local, survivorship-bias-free database and applies the daily EOD update.
-- **`norgatedata` Python package:** `pip install norgatedata`. Requires an active subscription and a running NDU. Depends on pandas, numpy, requests and logbook. Returns price/volume history, corporate-action time series, metadata, fundamentals and watchlists.
-- **Platform plugins & integrations:** Amibroker plugin, plus community integrations with Python backtesting frameworks such as **Zipline** (`zipline-norgatedata`) and **Backtrader**.
+#### Plans and pricing (1)
 
-## Capability Areas (modeled from the `norgatedata` library)
+Published plans, tiers and prices.
 
-These are the library's logical operations, grouped as capability areas. They are **local library calls**, not HTTP endpoints.
+- [Norgate Data Plans Pricing](https://apis.io/plans/norgate-data/norgate-data-plans-pricing/)
 
-### Norgate Data Price and Volume Data
+#### Rate limits (1)
 
-Daily OHLCV, volume, turnover, unadjusted close, dividends and open interest as Pandas/NumPy. Supports date ranges, limits, weekly/monthly/quarterly/yearly intervals, capital-and-dividend price adjustment, and date padding. Modeled: `price_timeseries`.
+Published request limits.
 
-- **Reference:** [https://pypi.org/project/norgatedata/](https://pypi.org/project/norgatedata/)
+- [Norgate Data Rate Limits](https://apis.io/rate-limits/norgate-data/norgate-data-rate-limits/)
 
+#### FinOps (1)
 
-### Norgate Data Security Metadata and Classifications
+What the API costs to run, by operation.
 
-Single-value reference lookups - name, symbol, asset id, domicile, currency, exchange, classification at any level, corresponding industry index, base type, listing status, quoted-date range and tick size. Modeled: `security_name`, `symbol`, `assetid`, `domicile`, `currency`, `exchange_name`, `classification`, `classification_at_level`, `status`, `tick_size`, and related.
+- [Norgate Data Finops](https://apis.io/finops/norgate-data/norgate-data-finops/)
 
-### Norgate Data Futures Metadata
+## Where to find this API
 
-Reference data for ~100 futures markets across 11 exchange groups - market/session names and symbols, session contracts, point value, margin and first notice date. Unadjusted and back-adjusted spot-month continuous contracts. Modeled: `futures_market_symbols`, `futures_market_session_contracts`, `point_value`, `margin`, `first_notice_date`, and related.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Reference:** [https://norgatedata.com/futurespackage.php](https://norgatedata.com/futurespackage.php)
-
-### Norgate Data Fundamentals
-
-Company fundamentals - named fundamental fields, financial and business summaries, shares outstanding and shares float. Availability depends on package. Modeled: `fundamental`, `financial_summary`, `business_summary`, `sharesoutstanding`, `sharesfloat`.
-
-### Norgate Data Watchlists and Databases
-
-Enumerate and resolve security lists - watchlists, built-in databases and their member symbols - plus database/price update timestamps for freshness checks. Modeled: `watchlist`, `watchlists`, `watchlist_symbols`, `database`, `databases`, `database_symbols`, `last_database_update_time`, `last_price_update_time`.
-
-## Pricing (summary)
-
-Norgate is sold as a flat **data subscription**, not metered API calls; the Python package and plugins are free with a subscription. Stock data is packaged per market by history depth; futures and forex are separate. Terms are 6 or 12 months (~10% annual discount). Grounded USD figures (verify on Norgate's price calculator):
-
-- **Stocks - Silver:** ~USD 270/yr per market, 10 years of history
-- **Stocks - Gold:** ~USD 360/yr per market, 20 years of history
-- **Stocks - Platinum:** ~USD 630/yr per market, history back to the early 1990s (delisted securities + historical index constituents)
-- **Stocks - Diamond (US only):** deepest tier, history back to 1950
-- **Futures:** ~USD 270/yr (~USD 148.50 for 6 months), ~100 markets, history back to ~1980, continuous contracts
-- **Forex:** separate package, history back to 1991
-
-See [plans/norgate-data-plans-pricing.yml](plans/norgate-data-plans-pricing.yml).
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/norgatedata)
 - [Website](https://norgatedata.com/)
 - [Documentation](https://pypi.org/project/norgatedata/)
-- [Plans](plans/norgate-data-plans-pricing.yml)
-- [Rate Limits](rate-limits/norgate-data-rate-limits.yml)
-- [Fin Ops](finops/norgate-data-finops.yml)
 
-## Review
+## API Evangelist rating
 
-Does Norgate Data expose a documented public WebSocket API? **No** - and it exposes no hosted public API at all. Access is the `norgatedata` Python library over a local NDU database delivering EOD historical data. There is no REST, SSE or WebSocket transport. See [review.yml](review.yml).
+**Kin Score 9.2** — minimal · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 7.9 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.6** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/norgate-data/](https://apis.io/providers/norgate-data/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Norgate Data: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/norgate-data/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
